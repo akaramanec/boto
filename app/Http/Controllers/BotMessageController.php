@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BotMessageStoreRequest;
+use App\Http\Requests\BotMessageUpdateRequest;
 use App\Models\BotMessage;
 use Illuminate\Http\Request;
 
@@ -10,36 +12,30 @@ class BotMessageController extends Controller
     public function index()
     {
         $messages = BotMessage::orderBy('id')->paginate(20);
-        return view('admin_dashboard', compact('messages'));
+        return view('bot-messages', compact('messages'));
     }
 
-    public function create()
+    public function store(BotMessageStoreRequest $request)
     {
-        //
+        $botMessage = BotMessage::firstOrCreate($request->validated());
+        $botMessage->save();
+        return redirect(route('bot_messages'));
     }
 
-    public function store(Request $request)
+    public function edit(BotMessage $message)
     {
-        //
+        return view('bot-message-edit', compact('message'));
     }
 
-    public function show($id)
+    public function update(BotMessageUpdateRequest $request, BotMessage $message)
     {
-        //
+        $message->update($request->validated());
+        return back();
     }
 
-    public function edit($id)
+    public function delete(BotMessage $message)
     {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        $message->delete();
+        return redirect(route('bot_messages'));
     }
 }

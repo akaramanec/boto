@@ -25,7 +25,11 @@ Route::get('/import', [ProductController::class, 'fileImport'])->middleware(['au
 Route::group(['middleware' => 'auth', 'prefix' => '/dashboard'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::group(['middleware' => 'admin', 'prefix' => '/bot-messages'], function () {
-        Route::get('/', [BotMessageController::class, 'index'])->name('dashboard.bot_messages');
+        Route::get('/', [BotMessageController::class, 'index'])->name('bot_messages');
+        Route::post('/', [BotMessageController::class, 'store'])->name('bot_messages.store');
+        Route::get('/{message}', [BotMessageController::class, 'edit'])->name('bot_messages.edit');
+        Route::delete('/{message}', [BotMessageController::class, 'delete'])->name('bot_messages.delete');
+        Route::match(['put', 'patch'],'/{message}', [BotMessageController::class, 'update'])->name('bot_messages.update');
     });
 });
 
