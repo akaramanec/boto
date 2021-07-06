@@ -17,7 +17,7 @@ class BotMessageController extends Controller
 
     public function store(BotMessageStoreRequest $request)
     {
-        $botMessage = BotMessage::firstOrCreate($request->validated());
+        $botMessage = BotMessage::create($request->validated());
         $botMessage->save();
         return redirect(route('bot_messages'));
     }

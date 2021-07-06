@@ -3,7 +3,7 @@
         <div class="form-floating mb-3">
             <form id="update" name="update" class="row g-3 needs-validation" role="form" method="post"
                   @if(request()->routeIs('bot_messages'))
-                  action="{{ route('bot_messages.store', $message->id) }}"
+                  action="{{ route('bot_messages.store') }}"
                   @elseif(request()->routeIs('bot_messages.edit'))
                   action="{{ route('bot_messages.update', $message->id) }}"
                 @endif>
