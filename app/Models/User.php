@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public const ROLE_USER = 1;
+    public const ROLE_ADMIN = 10;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -40,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->role == self::ROLE_ADMIN;
+    }
 }

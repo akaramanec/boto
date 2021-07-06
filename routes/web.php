@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\BotMessageController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
+use App\Models\BotMessage;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/import', [ProductController::class, 'fileImport'])->middleware(['auth', 'admin']);
+
+Route::group(['middleware' => 'auth', 'prefix' => '/dashboard'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::group(['middleware' => 'admin', 'prefix' => '/bot-messages'], function () {
+        Route::get('/', [BotMessageController::class, 'index'])->name('dashboard.bot_messages');
+    });
+});
 
 require __DIR__.'/auth.php';
