@@ -17,10 +17,12 @@ class ProductController extends Controller
 
     public function fileImport()
     {
-        try {
-            Excel::import(new ProductsImport(), '/home/alexandr/Завантаження/Items.xlsx');
-        } catch (\Exception $exception) {
-            return response($exception->getMessage(), 503);
+        $productsImport = new ProductsImport();
+        $importArray =  Excel::toArray($productsImport, '/home/alexandr/Завантаження/Items.xlsx');
+        $importArray = $productsImport->getArrayWithKeys($importArray);
+        foreach ($importArray as $importProduct) {
+            $product = Product::firstOrCreate($importProduct);
+            $product->save();
         }
         return redirect(route('home'));
     }

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
 
-Route::get('/import', [ProductController::class, 'fileImport'])->middleware(['auth', 'admin']);
+Route::get('/import', [ProductController::class, 'fileImport'])->middleware(['auth', 'admin'])->name('file_import');
 
 Route::group(['middleware' => 'auth', 'prefix' => '/dashboard'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
