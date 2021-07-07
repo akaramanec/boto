@@ -36,15 +36,15 @@ class TestCommand extends Command
         $user = User::first();
         $this->replyWithMessage(['text' => 'User email in laravel: ' . $user->email]);
 
-        $response = \Telegram::getMe();
+        $response = \Telegram::getUpdates();
 
-        $botId = $response->getId();
-        $firstName = $response->getFirstName();
-        $username = $response->getUsername();
+//        $botId = $response->getId();
+//        $firstName = $response->getFirstName();
+//        $username = $response->getUsername();
 //        $response = \Telegram::getUpdates();
 //        $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['from']['id']);
 //        $text .= sprintf('%s: %s' . PHP_EOL, 'Your name', $telegramUser['from']['username']);
 
-//        $this->replyWithMessage(['text' => $response]);
+//        $this->replyWithMessage(['text' => '$botId: ' . $botId . '; $firstName: ' . $firstName . '; $username: ' . $username]);
     }
 }
