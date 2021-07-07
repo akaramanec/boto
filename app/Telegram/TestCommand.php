@@ -40,13 +40,10 @@ class TestCommand extends Command
             "inline_keyboard" => [[$buttonBuy, $buttonPrev, $buttonNext]]
         ]);
 
-        $response = \Telegram::sendMessage([
+        \Telegram::sendMessage([
             'chat_id' => $telegramUser['chat']['id'],
-            'text' => 'Hello World',
+            'text' => 'Menu: ',
             'reply_markup' => $reply_markup
         ]);
-
-        dd(\Telegram::getWebhookUpdates()['message']);
-        $messageId = $response->getMessageId();
     }
 }
