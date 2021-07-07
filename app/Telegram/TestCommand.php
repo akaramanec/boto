@@ -54,5 +54,6 @@ class TestCommand extends Command
         ]);
 
         $messageId = $response->getMessageId();
+        $this->replyWithMessage(compact('text'));
     }
 }
