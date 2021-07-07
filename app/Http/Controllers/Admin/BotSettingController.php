@@ -29,7 +29,9 @@ class BotSettingController extends Controller
 
     public function setWebhook(Request $request)
     {
-        $result = $this->sendTelegramData('setwebhook', ['url' => $request->url . "/" . Telegram::getAccessToken()]);
+        $result = $this->sendTelegramData('setwebhook', [
+            'query' => ['url' => $request->url . "/" . Telegram::getAccessToken()]
+        ]);
         return redirect(route('bot_settings.index'))->with('status', $result);
     }
 
