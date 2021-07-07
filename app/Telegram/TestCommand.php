@@ -32,12 +32,12 @@ class TestCommand extends Command
     public function handle()
     {
         $this->replyWithChatAction(['action' => Actions::TYPING]);
-        $user = \App\Models\User::whereId(1)->first();
+        $user = \App\Models\User::first();
         $this->replyWithMessage(['text' => 'User email in laravel: ' . $user->email]);
 
         $telegramUser = \Telegram::getWebhookUpdates()['message'];
         $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['from']['id']);
-        $text = sprintf('%s: %s' . PHP_EOL, 'Your name', $telegramUser['from']['username']);
+        $text .= sprintf('%s: %s' . PHP_EOL, 'Your name', $telegramUser['from']['username']);
 
         $this->replyWithMessage(compact('text'));
     }
