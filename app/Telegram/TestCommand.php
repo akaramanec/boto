@@ -36,7 +36,7 @@ class TestCommand extends Command
 //        $user = User::first();
 //        $this->replyWithMessage(['text' => 'User email in laravel: ' . $user->email]);
 //        $response = \Telegram::removeWebhook();
-        $response = \Telegram::getUpdates();
+        $response = \Telegram::getWebhookUpdates()['message'];
 
 //        $botId = $response->getId();
 //        $firstName = $response->getFirstName();
