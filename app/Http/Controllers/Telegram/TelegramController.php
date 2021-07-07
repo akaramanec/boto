@@ -4,12 +4,19 @@ namespace App\Http\Controllers\Telegram;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\TelegramUser;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TelegramController extends Controller
 {
     public function wedhook()
     {
+        $telegramMessage = \Telegram::getWebhookUpdates()['message'];
+
+        if (!TelegramUser::whereId($telegramMessage['from']['id'])) {
+            TelegramUser::create(\GuzzleHttp\json_decode($telegramMessage['from'], true));
+        }
+
         Telegram::commandsHandler(true);
     }
 

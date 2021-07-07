@@ -31,7 +31,7 @@ class TestCommand extends Command
     public function handle()
     {
         $telegramUser = \Telegram::getWebhookUpdates()['message'];
-        $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['chat']['id']);
+        $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['from']['id']);
         $keyboard = [
             ['7', '8', '9'],
             ['4', '5', '6'],
