@@ -44,6 +44,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function getIsAdminAttribute(): bool
     {
         return $this->role == self::ROLE_ADMIN;

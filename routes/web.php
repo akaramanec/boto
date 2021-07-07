@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\BotMessageController;
+use App\Http\Controllers\Admin\BotMessageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
 
-Route::get('/import', [ProductController::class, 'fileImport'])->middleware(['auth', 'admin'])->name('file_import');
+Route::get('/import', [AdminProductController::class, 'fileImport'])->middleware(['auth', 'admin'])->name('file_import');
 
 Route::group(['middleware' => 'auth', 'prefix' => '/dashboard'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

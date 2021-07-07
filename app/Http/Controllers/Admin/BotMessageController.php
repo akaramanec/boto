@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BotMessageStoreRequest;
 use App\Http\Requests\BotMessageUpdateRequest;
 use App\Models\BotMessage;
-use Illuminate\Http\Request;
 
 class BotMessageController extends Controller
 {

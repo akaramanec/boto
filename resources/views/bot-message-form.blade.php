@@ -40,7 +40,7 @@
                            @if(request()->routeIs('bot_messages'))
                            value="Add"
                            @elseif(request()->routeIs('bot_messages.edit'))
-                           value="Add"
+                           value="Edit"
                            onclick="return confirm('Are you sure you want to update this item?')"
                            @endif>
 
