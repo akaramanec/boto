@@ -36,10 +36,10 @@ class TestCommand extends Command
         $user = User::first();
         $this->replyWithMessage(['text' => 'User email in laravel: ' . $user->email]);
 
-        $response = \Telegram::getUpdates();
+//        $response = \Telegram::getUpdates();
 //        $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['from']['id']);
 //        $text .= sprintf('%s: %s' . PHP_EOL, 'Your name', $telegramUser['from']['username']);
 
-        $this->replyWithMessage(['text' => $response]);
+//        $this->replyWithMessage(['text' => $response]);
     }
 }
