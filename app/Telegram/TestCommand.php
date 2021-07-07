@@ -31,18 +31,13 @@ class TestCommand extends Command
     public function handle()
     {
         $telegramUser = \Telegram::getWebhookUpdates()['message'];
-        $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['from']['id']);
-        $keyboard = [
-            ['7', '8', '9'],
-            ['4', '5', '6'],
-            ['1', '2', '3'],
-            ['0']
-        ];
+
+        $buttonBuy = Keyboard::inlineButton(["text" => "buy", "callback_data" => "/buy"]);
+        $buttonPrev = Keyboard::inlineButton(["text" => "<< prev", "callback_data" => "/prev"]);
+        $buttonNext = Keyboard::inlineButton(["text" => "next >>", "callback_data" => "/next"]);
 
         $reply_markup = Keyboard::make([
-            'keyboard' => $keyboard,
-            'resize_keyboard' => true,
-            'one_time_keyboard' => true
+            "inline_keyboard" => [[$buttonBuy, $buttonPrev, $buttonNext]]
         ]);
 
         $response = \Telegram::sendMessage([
@@ -51,7 +46,7 @@ class TestCommand extends Command
             'reply_markup' => $reply_markup
         ]);
 
+        dd(\Telegram::getWebhookUpdates()['message']);
         $messageId = $response->getMessageId();
-        $this->replyWithMessage(compact('text'));
     }
 }
