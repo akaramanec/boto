@@ -11,12 +11,21 @@ class TelegramController extends Controller
 {
     public function wedhook()
     {
-        $telegramMessage = \Telegram::getWebhookUpdates()['message'];
+        if (isset(\Telegram::getWebhookUpdates()['message'])) {
+            $telegramMessage = \Telegram::getWebhookUpdates()['message'];
 
-        if (!TelegramUser::whereId($telegramMessage['from']['id'])->first()) {
-            TelegramUser::create($telegramMessage['from']);
+            if (!TelegramUser::whereId($telegramMessage['from']['id'])->first()) {
+                TelegramUser::create($telegramMessage['from']);
+            }
+        } else {
+            dd(Telegram::getWebhookUpdates());
         }
-
+//
+//        if (isset($telegramMessage['text'])) {
+//            if ($telegramMessage['text'] == 'buy') {
+//
+//            }
+//        }
         Telegram::commandsHandler(true);
     }
 
