@@ -50,6 +50,6 @@ class BotSettingController extends Controller
 
     public function test()
     {
-        dd(Telegram::getAccessToken());
+        dd(file_get_contents(base_path() . 'bot_response.txt'));
     }
 }
