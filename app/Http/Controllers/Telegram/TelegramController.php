@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Telegram;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TelegramController extends Controller
 {
+    public function wedhook()
+    {
+        Telegram::commandsHandler(true);
+    }
+
     public function show()
     {
         return Product::inRandomOrder()->first();

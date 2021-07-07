@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BotSettingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Telegram\TelegramController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,7 @@ Route::get('/', [ProductController::class, 'index'])->name('home');
 
 Route::get('/import', [AdminProductController::class, 'fileImport'])->middleware(['auth', 'admin'])->name('file_import');
 
-Route::post(Telegram::getAccessToken(), function () {
-    Telegram::commandsHandler(true);
-});
+Route::post(Telegram::getAccessToken(), [TelegramController::class, 'wedhook']);
 
 Route::group(['middleware' => 'auth', 'prefix' => '/dashboard'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
