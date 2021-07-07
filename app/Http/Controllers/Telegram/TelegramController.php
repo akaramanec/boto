@@ -5,19 +5,21 @@ namespace App\Http\Controllers\Telegram;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\TelegramUser;
-use Telegram\Bot\Laravel\Facades\Telegram;
+use Illuminate\Support\Facades\Log;
+use Telegram;
 
 class TelegramController extends Controller
 {
     public function wedhook()
     {
-        if (isset(\Telegram::getWebhookUpdates()['message'])) {
-            $telegramMessage = \Telegram::getWebhookUpdates()['message'];
+        if (isset(Telegram::getWebhookUpdates()['message'])) {
+            $telegramMessage = Telegram::getWebhookUpdates()['message'];
 
             if (!TelegramUser::whereId($telegramMessage['from']['id'])->first()) {
                 TelegramUser::create($telegramMessage['from']);
             }
         } else {
+            Log::error('not message', Telegram::bot()->getWebhookUpdate()->getMessage());
             dd(Telegram::getWebhookUpdates());
         }
 //
