@@ -2,9 +2,7 @@
 
 namespace App\Telegram;
 
-use App\Models\User;
-use Telegram\Bot\Actions;
-use Telegram\Bot\Api;
+use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Commands\Command;
 
 /**
@@ -41,7 +39,7 @@ class TestCommand extends Command
             ['0']
         ];
 
-        $reply_markup = \Telegram::replyKeyboardMarkup([
+        $reply_markup = Keyboard::make([
             'keyboard' => $keyboard,
             'resize_keyboard' => true,
             'one_time_keyboard' => true
