@@ -32,10 +32,10 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $this->replyWithChatAction(['action' => Actions::TYPING]);
-        $user = User::first();
-        $this->replyWithMessage(['text' => 'User email in laravel: ' . $user->email]);
-        $response = \Telegram::removeWebhook();
+//        $this->replyWithChatAction(['action' => Actions::TYPING]);
+//        $user = User::first();
+//        $this->replyWithMessage(['text' => 'User email in laravel: ' . $user->email]);
+//        $response = \Telegram::removeWebhook();
         $response = \Telegram::getUpdates();
 
 //        $botId = $response->getId();
@@ -46,6 +46,6 @@ class TestCommand extends Command
 //        $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['from']['id']);
 //        $text .= sprintf('%s: %s' . PHP_EOL, 'Your name', $telegramUser['from']['username']);
 //        $this->replyWithMessage(compact('text'));
-//        $this->replyWithMessage(['text' => '$botId: ' . $botId . '; $firstName: ' . $firstName . '; $username: ' . $username]);
+        $this->replyWithMessage(['text' => compact('response'));
     }
 }
