@@ -13,7 +13,7 @@ class TelegramController extends Controller
     {
         $telegramMessage = \Telegram::getWebhookUpdates()['message'];
 
-        if (!TelegramUser::whereId($telegramMessage['from']['id'])) {
+        if (!TelegramUser::whereId($telegramMessage['from']['id'])->first()) {
             TelegramUser::create(\GuzzleHttp\json_decode($telegramMessage['from'], true));
         }
 
