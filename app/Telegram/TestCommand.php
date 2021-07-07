@@ -2,6 +2,8 @@
 
 namespace App\Telegram;
 
+use http\Client\Curl\User;
+use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 
 /**
@@ -29,13 +31,13 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $commands = $this->telegram->getCommands();
+        $this->replyWithChatAction(['action' => Actions::TYPING]);
+        $user = \App\Models\User::whereId(1)->first();
+        $this->replyWithMessage(['text' => 'User email in laravel: ' . $user->email]);
 
-        $text = '';
-        foreach ($commands as $name => $handler) {
-            /* @var Command $handler */
-            $text .= sprintf('/%s - %s'.PHP_EOL, $name, $handler->getDescription());
-        }
+        $telegramUser = \Telegram::getWebhookUpdates()['message'];
+        $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['from']['id']);
+        $text = sprintf('%s: %s' . PHP_EOL, 'Your name', $telegramUser['from']['username']);
 
         $this->replyWithMessage(compact('text'));
     }
