@@ -45,6 +45,6 @@ class TestCommand extends Command
 //        $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['from']['id']);
 //        $text .= sprintf('%s: %s' . PHP_EOL, 'Your name', $telegramUser['from']['username']);
 
-        $this->replyWithMessage(['text' => $response]);
+//        $this->replyWithMessage(['text' => $response]);
     }
 }
