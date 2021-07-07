@@ -34,8 +34,25 @@ class TestCommand extends Command
     {
         $telegramUser = \Telegram::getWebhookUpdates()['message'];
         $text = sprintf('%s: %s' . PHP_EOL, 'Your chat namber', $telegramUser['chat']['id']);
-        $text .= sprintf('%s: %s' . PHP_EOL, 'Your name', $telegramUser['from']['username']);
+        $keyboard = [
+            ['7', '8', '9'],
+            ['4', '5', '6'],
+            ['1', '2', '3'],
+            ['0']
+        ];
 
-        $this->replyWithMessage(['text' => $text ?? 'response null']);
+        $reply_markup = \Telegram::replyKeyboardMarkup([
+            'keyboard' => $keyboard,
+            'resize_keyboard' => true,
+            'one_time_keyboard' => true
+        ]);
+
+        $response = \Telegram::sendMessage([
+            'chat_id' => $telegramUser['chat']['id'],
+            'text' => 'Hello World',
+            'reply_markup' => $reply_markup
+        ]);
+
+        $messageId = $response->getMessageId();
     }
 }

@@ -26,7 +26,7 @@
                         </div>
                         <br>
                         <input type="url" class="form-control" id="url_callback_bot" name="url_callback_bot"
-                               value="{{ $url_callback_bot ?? '' }}">
+                               value="{{ $url_callback_bot ?? '' }}" style="width: 40%">
                     </div>
 
                     <button class="btn btn-primary" type="submit">
