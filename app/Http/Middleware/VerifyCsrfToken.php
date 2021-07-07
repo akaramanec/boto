@@ -21,6 +21,6 @@ class VerifyCsrfToken extends Middleware
     {
         $this->app = $app;
         $this->encrypter = $encrypter;
-        $this->except = \Telegram::getAccessToken();
+        $this->except[] = \Telegram::getAccessToken();
     }
 }
