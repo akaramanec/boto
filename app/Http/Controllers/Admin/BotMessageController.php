@@ -12,19 +12,19 @@ class BotMessageController extends Controller
     public function index()
     {
         $messages = BotMessage::orderBy('id')->paginate(20);
-        return view('bot-messages', compact('messages'));
+        return view('admin.bot-message-index', compact('messages'));
     }
 
     public function store(BotMessageStoreRequest $request)
     {
         $botMessage = BotMessage::create($request->validated());
         $botMessage->save();
-        return redirect(route('bot_messages'));
+        return redirect(route('bot_messages.index'));
     }
 
     public function edit(BotMessage $message)
     {
-        return view('bot-message-edit', compact('message'));
+        return view('admin.bot-message-edit', compact('message'));
     }
 
     public function update(BotMessageUpdateRequest $request, BotMessage $message)
@@ -36,6 +36,6 @@ class BotMessageController extends Controller
     public function delete(BotMessage $message)
     {
         $message->delete();
-        return redirect(route('bot_messages'));
+        return redirect(route('bot_messages.index'));
     }
 }

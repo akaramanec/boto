@@ -18,9 +18,15 @@
                 </div>
                 @if(Auth::user()->isAdmin)
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('bot_messages')"
-                                    :active="request()->routeIs('bot_messages')">
+                        <x-nav-link :href="route('bot_messages.index')"
+                                    :active="request()->routeIs('bot_messages.index')">
                             {{ __('Bot Messages') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('bot_settings.index')"
+                                    :active="request()->routeIs('bot_settings.index')">
+                            {{ __('Bot Settings') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="form-floating mb-3">
             <form id="update" name="update" class="row g-3 needs-validation" role="form" method="post"
-                  @if(request()->routeIs('bot_messages'))
+                  @if(request()->routeIs('bot_messages.index'))
                   action="{{ route('bot_messages.store') }}"
                   @elseif(request()->routeIs('bot_messages.edit'))
                   action="{{ route('bot_messages.update', $message->id) }}"
@@ -37,7 +37,7 @@
                            form="update"
                            title="Click to update"
                            class="btn btn-primary"
-                           @if(request()->routeIs('bot_messages'))
+                           @if(request()->routeIs('bot_messages.index'))
                            value="Add"
                            @elseif(request()->routeIs('bot_messages.edit'))
                            value="Edit"
