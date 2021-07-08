@@ -78,7 +78,7 @@ abstract class AbstractFlow
             return true;
         }
 
-        $state = $this->findByTrigger();
+        $state = $this->findByContext();
 
         if (!is_null($state)) {
             Context::save($this->user, $this, $state);
@@ -86,7 +86,7 @@ abstract class AbstractFlow
             return true;
         }
 
-        $state = $this->findByContext();
+        $state = $this->findByTrigger();
 
         if (!is_null($state)) {
             Context::save($this->user, $this, $state);
