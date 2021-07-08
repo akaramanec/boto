@@ -13,11 +13,20 @@ class Conversation
     protected $flows = [
         WelcomeFlow::class,
     ];
+    /**
+     * @var Context
+     */
+    private $context;
 
-    public function __construct(TelegramUser $telegramUser, Product $product)
+    public function __construct(
+        TelegramUser $telegramUser,
+        Product $product,
+        Context $context
+    )
     {
         $this->telegramUser = $telegramUser;
         $this->product = $product;
+        $this->context = $context;
     }
 
     public function start(TelegramUser $user, object $message)
@@ -32,7 +41,11 @@ class Conversation
             $flow = app($flow);
             $flow->setUser($user);
             $flow->setMessage($message);
-            $flow->run();
+            $state = $flow->run();
+            if (is_string($state)) {
+                $this->context->save($user, $flow, $state);
+                break;
+            }
         }
     }
 

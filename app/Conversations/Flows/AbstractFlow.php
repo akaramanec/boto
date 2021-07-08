@@ -46,9 +46,11 @@ abstract class AbstractFlow
 
         foreach ($this->triggers as $trigger) {
             if (hash_equals($trigger, $this->message->text)) {
-                $this->first();
+                $state = 'first';
             }
         }
+
+        return $state ?? $this->$state();
     }
 
     abstract protected function first();
