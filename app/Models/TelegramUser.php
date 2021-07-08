@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use \Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class TelegramUser extends Model
+class TelegramUser extends Eloquent
 {
     use HasFactory;
 

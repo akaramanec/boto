@@ -11,11 +11,15 @@ class TelegramCallbackService
     /**
      * @var TelegramUser
      */
-    private $telegramUser;
+    protected $telegramUser;
     /**
      * @var Product
      */
-    private $product;
+    protected $product;
+
+    protected $actions = [
+        '/buy', '/prev', '/next'
+    ];
 
     public function __construct(TelegramUser $telegramUser, Product $product)
     {
@@ -23,8 +27,19 @@ class TelegramCallbackService
         $this->product = $product;
     }
 
-    public function getNextAction(array $callbackQuery)
+    public function nextStep(array $callbackQuery)
     {
-        Log::debug('getNextAction.callbackQuery', $callbackQuery);
+        Log::debug('TelegramCallbackService.nextStep', $callbackQuery);
+
+        foreach ($this->actions as $action) {
+            if ($callbackQuery['data'] == $action) {
+                $this->$action($callbackQuery);
+            }
+        }
+    }
+
+    public function buy(array $callbackQuery)
+    {
+        Log::debug('TelegramCallbackService.buy', $callbackQuery['message']['product']['id']);
     }
 }
