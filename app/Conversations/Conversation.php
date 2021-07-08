@@ -12,25 +12,21 @@ use Illuminate\Support\Facades\Log;
 class Conversation
 {
     protected $flows = [
-        WelcomeFlow::class,
         ShopFlow::class
     ];
 
     public function start(TelegramUser $user, object $message)
     {
         Log::debug('Conversation.start', [
-                'user' => $user->toArray(),
-                'message' => $message->toArray()
-            ]);
+            'user' => $user->toArray(),
+            'message' => $message->toArray()
+        ]);
 
         $context = Context::get($user);
         $flow = app(WelcomeFlow::class);
 
         foreach ($this->flows as $flowName) {
-            if (
-                isset($context['flow']) &&
-                $flowName == $context['flow']
-            ) {
+            if (isset($context['flow']) && $flowName == $context['flow']) {
                 $flow = app($flowName);
             }
         }

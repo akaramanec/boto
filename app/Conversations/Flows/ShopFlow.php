@@ -11,5 +11,7 @@ class ShopFlow extends AbstractFlow
             'chat_id' => $this->user->id,
             'text' => __('List of products of our shop')
         ]);
+
+        $this->jump(ProductFlow::class);
     }
 }
