@@ -27,7 +27,10 @@ class Conversation
         $flow = app(WelcomeFlow::class);
 
         foreach ($this->flows as $flowName) {
-            if (isset($context['flow']) && $flowName == $context['flow']) {
+            if (
+                isset($context['flow']) &&
+                $flowName == $context['flow']
+            ) {
                 $flow = app($flowName);
             }
         }
@@ -35,6 +38,6 @@ class Conversation
         $flow->setUser($user);
         $flow->setMessage($message);
         $flow->setContext($context);
-        $flow->run();
+        $flow->run($context['state'] ?? null);
     }
 }
