@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Str;
 
-if (getenv('REDIS_URL')) {
-    $url = parse_url(getenv('REDIS_URL'));
+if (getenv('REDISCLOUD_URL')) {
+    $url = parse_url(getenv('REDISCLOUD_URL'));
 
     putenv('REDIS_HOST='.$url['host']);
     putenv('REDIS_PORT='.$url['port']);
