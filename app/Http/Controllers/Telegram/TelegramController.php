@@ -21,7 +21,7 @@ class TelegramController extends Controller
      */
     protected $users;
 
-    protected function __construct(
+    public function __construct(
         TelegramCallbackService $callbackService,
         TelegramUserRepository $userRepository
     )
@@ -37,11 +37,11 @@ class TelegramController extends Controller
         $message = $update->getMessage();
         $user = $message->getFrom();
 
-        $this->users->store($user);
+        $user = $this->users->store($user->toArray());
 
-        if (Telegram::bot()->getWebhookUpdate()['callback_query']) {
-            $this->callbackService->nextStep(Telegram::bot()->getWebhookUpdate()['callback_query']);
-        }
+//        if (Telegram::bot()->getWebhookUpdate()['callback_query']) {
+//            $this->callbackService->nextStep(Telegram::bot()->getWebhookUpdate()['callback_query']);
+//        }
 
 //        if (isset(Telegram::getWebhookUpdates()['message'])) {
 //            $telegramMessage = Telegram::getWebhookUpdates()['message'];
@@ -50,8 +50,6 @@ class TelegramController extends Controller
 //                TelegramUser::create($telegramMessage['from']);
 //            }
 //        }
-
-        Telegram::bot()->commandsHandler(true);
     }
 
     public function show()

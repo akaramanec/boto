@@ -16,6 +16,6 @@ class TelegramUserRepository extends AbstractRepository
 
     public function store(array $user)
     {
-        return $this->model->firstOrCreate($user);
+        return $this->model->firstOrCreate(['id' => $user['id']], $user);
     }
 }
