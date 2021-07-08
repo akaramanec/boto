@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
 
-Route::get('/import', [AdminProductController::class, 'fileImport'])->middleware(['auth', 'admin'])->name('file_import');
+Route::get('/imports', [AdminProductController::class, 'imports'])->middleware(['auth', 'admin'])->name('imports');
+Route::post('/imports', [AdminProductController::class, 'fileImport'])->middleware(['auth', 'admin'])->name('file_import');
 
 Route::post(Telegram::getAccessToken(), [TelegramController::class, 'webhook']);
 

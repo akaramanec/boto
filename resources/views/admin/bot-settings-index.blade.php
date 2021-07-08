@@ -4,9 +4,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if(Session::has('status'))
+            @if($message = Session::has('status'))
                 <div class="alert alert-info">
-                    <span>{{ Session::get('status') }}</span>
+                    <span>{{ $message }}</span>
                 </div>
                 <br>
                 <br>
@@ -14,6 +14,15 @@
             <div class="container">
                 <form action=" {{ route('bot_settings.store') }}" method="post">
                     @csrf
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="form-group">
                         <label>Url callback for TelegramBot</label>
                         <br>
