@@ -17,6 +17,8 @@ class WelcomeFlow extends AbstractFlow
             'text' => __('Welcome to Boto shop')
         ]);
 
+        sleep(2);
+
         $this->jump(ShopFlow::class);
     }
 }
