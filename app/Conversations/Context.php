@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class Context
 {
-    public function save(TelegramUser $user, AbstractFlow $flow, string $state)
+    public static function save(TelegramUser $user, AbstractFlow $flow, string $state)
     {
         Log::debug(static::class . '.save', [
             'user' => $user->toArray(),
@@ -17,13 +17,18 @@ class Context
             'state' => $state
         ]);
 
-        Cache::forever($this->key($user), [
+        Cache::forever(self::key($user), [
             'flow' => get_class($flow),
             'state' => $state
         ]);
     }
 
-    private function key(TelegramUser $user)
+    public static function get(TelegramUser $user)
+    {
+        return Cache::get(self::key($user->id), []);
+    }
+
+    private static function key(TelegramUser $user): string
     {
         return 'context_' . $user->id;
     }

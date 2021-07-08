@@ -1,22 +1,15 @@
 <?php
 
-
 namespace App\Conversations\Flows;
 
-
-class WelcomeFlow extends AbstractFlow
+class ShopFlow extends AbstractFlow
 {
-    protected $triggers = [
-        '/start'
-    ];
 
     protected function first()
     {
         $this->telegram()->sendMessage([
             'chat_id' => $this->user->id,
-            'text' => __('Welcome to Boto shop')
+            'text' => __('List of products of our shop')
         ]);
-
-        $this->jump(ShopFlow::class);
     }
 }
