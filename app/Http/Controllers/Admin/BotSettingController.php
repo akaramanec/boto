@@ -50,22 +50,6 @@ class BotSettingController extends Controller
 
     public function test()
     {
-        if (getenv('REDISCLOUD_URL')) {
-            $url = parse_url(getenv('REDISCLOUD_URL'));
-
-            print_r('REDISCLOUD_URL');
-            print_r('REDIS_HOST='.$url['host']);
-            print_r('REDIS_PORT='.$url['port']);
-            print_r('REDIS_PASSWORD='.$url['pass']);
-        }
-        if (getenv('REDIS_URL')) {
-            $url = parse_url(getenv('REDIS_URL'));
-            print_r('REDIS_URL');
-            print_r('REDIS_HOST='.$url['host']);
-            print_r('REDIS_PORT='.$url['port']);
-            print_r('REDIS_PASSWORD='.$url['pass']);
-        }
-        \Cache::set('test', 'valueTest');
         return 'test';
     }
 }
