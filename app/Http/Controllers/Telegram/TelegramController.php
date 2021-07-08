@@ -37,6 +37,10 @@ class TelegramController extends Controller
             return 'testValue';
         });
 
+        \Cache::store('redis')->remember('test2', now()->addMinutes(10), function () {
+            return 'testValue2';
+        });
+
         $update = Telegram::bot()->getWebhookUpdate();
         $message = $update->getMessage();
         $user = $message->getFrom();
