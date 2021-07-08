@@ -25,7 +25,7 @@ class Context
 
     public static function get(TelegramUser $user)
     {
-        return Cache::get(self::key($user->id), []);
+        return Cache::get(self::key($user), []);
     }
 
     private static function key(TelegramUser $user): string
