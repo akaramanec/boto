@@ -11,7 +11,7 @@ class Context
 {
     public function save(TelegramUser $user, AbstractFlow $flow, string $state)
     {
-        Log::debug(static::class . '.run', [
+        Log::debug(static::class . '.save', [
             'user' => $user->toArray(),
             'flow' => get_class($flow),
             'state' => $state

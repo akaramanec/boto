@@ -19,12 +19,10 @@ class Conversation
     private $context;
 
     public function __construct(
-        TelegramUser $telegramUser,
         Product $product,
         Context $context
     )
     {
-        $this->telegramUser = $telegramUser;
         $this->product = $product;
         $this->context = $context;
     }
@@ -48,5 +46,4 @@ class Conversation
             }
         }
     }
-
 }

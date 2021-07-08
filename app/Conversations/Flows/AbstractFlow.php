@@ -50,7 +50,7 @@ abstract class AbstractFlow
             }
         }
 
-        return $state ?? $this->$state();
+        return $state == null ? null : $this->$state();
     }
 
     abstract protected function first();
