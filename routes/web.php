@@ -23,7 +23,7 @@ Route::get('/', [ProductController::class, 'index'])->name('home');
 
 Route::get('/import', [AdminProductController::class, 'fileImport'])->middleware(['auth', 'admin'])->name('file_import');
 
-Route::post(Telegram::getAccessToken(), [TelegramController::class, 'wedhook']);
+Route::post(Telegram::getAccessToken(), [TelegramController::class, 'webhook']);
 
 Route::group(['middleware' => 'auth', 'prefix' => '/dashboard'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

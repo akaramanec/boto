@@ -5,29 +5,39 @@ namespace App\Http\Controllers\Telegram;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\TelegramUser;
+use App\Services\TelegramCallbackService;
 use Illuminate\Support\Facades\Log;
 use Telegram;
 
 class TelegramController extends Controller
 {
-    public function wedhook()
+    /**
+     * @var TelegramCallbackService
+     */
+    private $callbackService;
+
+    public function __construct(TelegramCallbackService $callbackService)
     {
+
+        $this->callbackService = $callbackService;
+    }
+
+    public function webhook()
+    {
+
+        if (Telegram::bot()->getWebhookUpdate()['callback_query']) {
+            $this->callbackService->getNextAction(Telegram::bot()->getWebhookUpdate()['callback_query']);
+        }
+
         if (isset(Telegram::getWebhookUpdates()['message'])) {
             $telegramMessage = Telegram::getWebhookUpdates()['message'];
 
             if (!TelegramUser::whereId($telegramMessage['from']['id'])->first()) {
                 TelegramUser::create($telegramMessage['from']);
             }
-        } else {
-            Log::error('not message', ['data' => Telegram::bot()->getWebhookUpdate()->toArray()['callback_query']]);
         }
-//
-//        if (isset($telegramMessage['text'])) {
-//            if ($telegramMessage['text'] == 'buy') {
-//
-//            }
-//        }
-        Telegram::commandsHandler(true);
+
+        Telegram::bot()->commandsHandler(true);
     }
 
     public function show()
