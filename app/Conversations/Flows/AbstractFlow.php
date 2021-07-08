@@ -4,8 +4,8 @@ namespace App\Conversations\Flows;
 
 use App\Conversations\Context;
 use App\Models\TelegramUser;
-use http\Exception\InvalidArgumentException;
 use Illuminate\Support\Facades\Log;
+use InvalidArgumentException;
 use Telegram;
 use Telegram\Bot\Api;
 
@@ -21,6 +21,25 @@ abstract class AbstractFlow
     protected $triggers = [];
     /** @var array */
     protected $states = ['first'];
+
+    public function telegram(): Api
+    {
+        return Telegram::bot();
+    }
+
+    public function getFlow(string $flow): AbstractFlow
+    {
+        if (!class_exists($flow)) {
+            throw new InvalidArgumentException('Flow does not exists.');
+        }
+
+        $flow = app($flow);
+        $flow->setUser($this->user);
+        $flow->setMessage($this->message);
+        $flow->setContext($this->context);
+
+        return $flow;
+    }
 
     public function setUser(TelegramUser $user)
     {
@@ -40,11 +59,6 @@ abstract class AbstractFlow
     public function getStates(): array
     {
         return $this->states;
-    }
-
-    public function telegram(): Api
-    {
-        return Telegram::bot();
     }
 
     /**
@@ -130,20 +144,6 @@ abstract class AbstractFlow
             return $states[$currentStateId + 1];
         }
         return null;
-    }
-
-    private function getFlow(string $flow): AbstractFlow
-    {
-        if (!class_exists($flow)) {
-            throw new InvalidArgumentException('Flow does not exists.');
-        }
-
-        $flow = app($flow);
-        $flow->setUser($this->user);
-        $flow->setMessage($this->message);
-        $flow->setContext($this->context);
-
-        return $flow;
     }
 
     abstract protected function first();

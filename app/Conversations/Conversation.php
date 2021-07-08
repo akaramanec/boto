@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Log;
 
 class Conversation
 {
-    protected $flows = [
-        WelcomeFlow::class,
-    ];
-
     public function start(TelegramUser $user, object $message)
     {
         Log::debug('Conversation.start', [
@@ -21,16 +17,10 @@ class Conversation
                 'message' => $message->toArray()
             ]);
 
-        $context = Context::get($user);
-
-        foreach ($this->flows as $flow) {
-            /** @var AbstractFlow $flow */
-            $flow = app($flow);
-            $flow->setUser($user);
-            $flow->setMessage($message);
-            $flow->setContext($context);
-            $flow->run();
-            break;
-        }
+        $flow = app(WelcomeFlow::class);
+        $flow->setUser($user);
+        $flow->setMessage($message);
+        $flow->setContext([]);
+        $flow->run();
     }
 }
