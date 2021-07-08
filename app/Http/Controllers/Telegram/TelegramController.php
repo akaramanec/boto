@@ -36,22 +36,9 @@ class TelegramController extends Controller
         $update = Telegram::bot()->getWebhookUpdate();
         $message = $update->getMessage();
         $user = $message->getFrom();
-
         $user = $this->users->store($user->toArray());
 
         $this->conversation->start($user, $message);
-
-//        if (Telegram::bot()->getWebhookUpdate()['callback_query']) {
-//            $this->callbackService->nextStep(Telegram::bot()->getWebhookUpdate()['callback_query']);
-//        }
-
-//        if (isset(Telegram::getWebhookUpdates()['message'])) {
-//            $telegramMessage = Telegram::getWebhookUpdates()['message'];
-//
-//            if (!TelegramUser::whereId($telegramMessage['from']['id'])->first()) {
-//                TelegramUser::create($telegramMessage['from']);
-//            }
-//        }
     }
 
     public function show()

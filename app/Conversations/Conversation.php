@@ -30,6 +30,7 @@ class Conversation
             $flow->setMessage($message);
             $flow->setContext($context);
             $flow->run();
+            break;
         }
     }
 }
