@@ -19,7 +19,7 @@ class TelegramController extends Controller
                 TelegramUser::create($telegramMessage['from']);
             }
         } else {
-            Log::error('not message', ['data' => Telegram::bot()->getWebhookUpdate()->toArray()['data']]);
+            Log::error('not message', ['data' => Telegram::bot()->getWebhookUpdate()->toArray()['callback_query']]);
         }
 //
 //        if (isset($telegramMessage['text'])) {
