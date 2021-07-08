@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Repositories;
 
-
 use App\Models\TelegramUser;
-use phpDocumentor\Reflection\Types\Collection;
+use Eloquent;
 
 class TelegramUserRepository extends AbstractRepository
 {
@@ -14,7 +12,7 @@ class TelegramUserRepository extends AbstractRepository
         parent::__construct($user);
     }
 
-    public function store(array $user)
+    public function store(array $user): Eloquent
     {
         return $this->model->firstOrCreate(['id' => $user['id']], $user);
     }

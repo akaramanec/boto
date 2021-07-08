@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Telegram;
 
+use App\Conversations\Conversation;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\TelegramUser;
@@ -15,18 +16,18 @@ class TelegramController extends Controller
     /**
      * @var TelegramCallbackService
      */
-    protected $callbackService;
+    protected $conversation;
     /**
      * @var TelegramUserRepository
      */
     protected $users;
 
     public function __construct(
-        TelegramCallbackService $callbackService,
-        TelegramUserRepository $userRepository
+        TelegramUserRepository $userRepository,
+        Conversation $conversation
     )
     {
-        $this->callbackService = $callbackService;
+        $this->conversation = $conversation;
         $this->users = $userRepository;
     }
 
@@ -38,6 +39,8 @@ class TelegramController extends Controller
         $user = $message->getFrom();
 
         $user = $this->users->store($user->toArray());
+
+        $this->conversation->start($user, $message);
 
 //        if (Telegram::bot()->getWebhookUpdate()['callback_query']) {
 //            $this->callbackService->nextStep(Telegram::bot()->getWebhookUpdate()['callback_query']);

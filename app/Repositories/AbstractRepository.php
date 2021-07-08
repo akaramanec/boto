@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use Eloquent;
 
-class AbstractRepository
+abstract class AbstractRepository
 {
     protected $model;
 

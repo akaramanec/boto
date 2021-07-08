@@ -27,6 +27,11 @@ class TelegramCallbackService
         $this->product = $product;
     }
 
+    public function start(TelegramUser $user)
+    {
+
+    }
+
     public function nextStep(array $callbackQuery)
     {
         Log::debug('TelegramCallbackService.nextStep', $callbackQuery);

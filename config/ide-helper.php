@@ -128,7 +128,7 @@ return [
     */
 
     'model_locations' => [
-        'Modules/*/Entities',
+        'app/Models',
     ],
 
     /*
