@@ -32,6 +32,9 @@ class Conversation
             }
         }
 
-        $flow->getFlow(get_class($flow))->run();
+        $flow->setUser($user);
+        $flow->setMessage($message);
+        $flow->setContext($context);
+        $flow->run();
     }
 }
