@@ -3,6 +3,7 @@
 namespace App\Conversations;
 
 use App\Conversations\Flows\AbstractFlow;
+use App\Conversations\Flows\ProductFlow;
 use App\Conversations\Flows\ShopFlow;
 use App\Conversations\Flows\WelcomeFlow;
 use App\Models\Product;
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Log;
 class Conversation
 {
     protected $flows = [
-        ShopFlow::class
+        ShopFlow::class,
+        ProductFlow::class
     ];
 
     public function start(TelegramUser $user, object $message)
