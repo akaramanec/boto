@@ -78,7 +78,7 @@ abstract class AbstractFlow
             return true;
         }
 
-        $state = $this->findByContext();
+        $state = $this->findByTrigger();
 
         if (!is_null($state)) {
             $this->$state();
@@ -86,7 +86,7 @@ abstract class AbstractFlow
             return true;
         }
 
-        $state = $this->findByTrigger();
+        $state = $this->findByContext();
 
         if (!is_null($state)) {
             $this->$state();
@@ -126,10 +126,6 @@ abstract class AbstractFlow
 
             $flow = $this->getFlow($this->context['flow']);
             $nextState = $this->getNextState($flow);
-        }
-
-        if (!is_null($nextState)) {
-            $this->run($nextState);
         }
 
         return $nextState;

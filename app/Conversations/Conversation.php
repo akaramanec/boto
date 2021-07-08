@@ -20,7 +20,6 @@ class Conversation
         $flow = app(WelcomeFlow::class);
         $flow->setUser($user);
         $flow->setMessage($message);
-        $flow->setContext([]);
         $flow->run();
     }
 }
