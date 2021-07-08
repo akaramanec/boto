@@ -37,7 +37,7 @@ abstract class AbstractFlow
         $this->context = $context;
     }
 
-    public function getState(): array
+    public function getStates(): array
     {
         return $this->states;
     }
