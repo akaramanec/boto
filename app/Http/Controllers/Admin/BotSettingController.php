@@ -50,6 +50,7 @@ class BotSettingController extends Controller
 
     public function test()
     {
+        \Cache::set('test', 'valueTest');
         return 'test';
     }
 }
