@@ -69,13 +69,13 @@ class ProductFlow extends AbstractFlow
 
     protected function next()
     {
-        $product = $this->getProduct();
+        $currentProduct = $this->getProduct();
 
         /** @var $nextProduct Product */
         $nextProduct  = $this->productService->next($currentProduct);
 
         Log::debug('ProductFlow.next', [
-            'product' => $product,
+            'product' => $currentProduct,
         ]);
         Context::update($this->user, ['product_id' => $nextProduct->id]);
 
