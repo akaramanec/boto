@@ -2,6 +2,7 @@
 
 namespace App\Conversations\Flows;
 
+use App\Conversations\Context;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;
@@ -36,6 +37,8 @@ class ProductFlow extends AbstractFlow
         Log::debug('ProductFlow.first', [
             'product' => $product,
         ]);
+
+        Context::update($this->user, ['product_id' => $product->id]);
 
         $buttons =  $this->productService->getProductButtons($product);
 

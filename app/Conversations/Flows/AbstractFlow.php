@@ -111,7 +111,7 @@ abstract class AbstractFlow
             }
         }
 
-
+        Log::debug(static::class . '.findByTrigger', ['nextState' => $state]);
         return $state;
     }
 
