@@ -78,12 +78,6 @@ abstract class AbstractFlow
             'state' => $state
         ]);
 
-        if (!is_null($state)) {
-            Context::save($this->user, $this, $state);
-            $this->$state();
-            return true;
-        }
-
         $state = $this->findByContext();
 
         if (!is_null($state)) {
@@ -103,9 +97,25 @@ abstract class AbstractFlow
         return false;
     }
 
+    public function runState($state): bool
+    {
+        Log::debug(static::class . '.runState', [
+            'user' => $this->user->toArray(),
+            'message' => $this->message->toArray(),
+            'state' => $state
+        ]);
+
+        if (!is_null($state)) {
+            Context::save($this->user, $this, $state);
+            $this->$state();
+            return true;
+        }
+        return false;
+    }
+
     protected function jump(string $flow, string $state = 'first')
     {
-        $this->getFlow($flow)->run($state);
+        $this->getFlow($flow)->runState($state);
     }
 
     private function findByTrigger(): ?string
