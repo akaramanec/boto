@@ -34,15 +34,14 @@ class Context
     {
         $currentContext = self::get($user);
 
-        Log::debug('Context.update', [
-            'user' => $user->toArray(),
-            'options' => $currentContext
-        ]);
-
-
         Cache::forever(self::key($user), [
             'flow' => $currentContext['flow'],
             'state' => $currentContext['state'],
+            'options' => $options
+        ]);
+
+        Log::debug('Context.update', [
+            'user' => $user->toArray(),
             'options' => $options
         ]);
     }
