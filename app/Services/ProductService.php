@@ -16,7 +16,7 @@ class ProductService extends ProductRepository
         self::BUTTON_BUY => 'Buy',
         self::BUTTON_PREV => '<< Prev',
         self::BUTTON_NEXT => 'Next >>',
-    ]
+    ];
 
     protected $buttons = [];
 
