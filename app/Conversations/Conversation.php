@@ -39,9 +39,4 @@ class Conversation
         $flow->setContext($context);
         $flow->run($context['state'] ?? null);
     }
-
-    public function processingCallback(CallbackQuery $callbackQuery)
-    {
-
-    }
 }
