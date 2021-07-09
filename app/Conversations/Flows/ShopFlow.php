@@ -14,7 +14,7 @@ class ShopFlow extends AbstractFlow
     {
         $this->telegram()->sendMessage([
             'chat_id' => $this->user->id,
-            'text' => BotMessage::where('briefly', 'shop_intro')->first()
+            'text' => BotMessage::where('briefly', 'shop_intro')->first()->message
         ]);
 
         $this->jump(ProductFlow::class);
