@@ -23,10 +23,6 @@ class ProductFlow extends AbstractFlow
         'product_id' => null
     ];
 
-    protected $states = [
-        'first', 'continue'
-    ];
-
     protected $productService;
 
     public function __construct(ProductService $productService)
@@ -39,20 +35,6 @@ class ProductFlow extends AbstractFlow
         $product = $this->getProduct();
 
         Log::debug('ProductFlow.first', [
-            'product' => $product,
-        ]);
-
-        Context::update($this->user, ['product_id' => $product->id]);
-
-        $this->sendProductWithKeyboard($product);
-    }
-
-    public function continue()
-    {
-        $context = Context::get($this->user);
-        $product = $this->getProduct();
-
-        Log::debug('ProductFlow.continue', [
             'product' => $product,
         ]);
 

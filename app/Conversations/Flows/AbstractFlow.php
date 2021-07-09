@@ -75,13 +75,14 @@ abstract class AbstractFlow
         Log::debug(static::class . '.run', [
             'user' => $this->user->toArray(),
             'message' => $this->message->toArray(),
-            'state' => $state
+            'state' => $state,
+            'option' => $this->options
         ]);
 
         $state = $this->findByContext();
 
         if (!is_null($state)) {
-            Context::save($this->user, $this, $state);
+            Context::save($this->user, $this, $state, $this->options);
             $this->$state();
             return true;
         }
@@ -89,7 +90,7 @@ abstract class AbstractFlow
         $state = $this->findByTrigger();
 
         if (!is_null($state)) {
-            Context::save($this->user, $this, $state);
+            Context::save($this->user, $this, $state, $this->options);
             $this->$state();
             return true;
         }
@@ -106,7 +107,7 @@ abstract class AbstractFlow
         ]);
 
         if (!is_null($state)) {
-            Context::save($this->user, $this, $state);
+            Context::save($this->user, $this, $state, $this->options);
             $this->$state();
             return true;
         }
