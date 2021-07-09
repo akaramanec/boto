@@ -29,10 +29,18 @@ class Conversation
         $flow = app(WelcomeFlow::class);
 
         foreach ($this->flows as $flowName) {
-            if (isset($context['flow']) && $flowName == $context['flow']) {
-                $flow = app($flowName);
+            if (isset($context['flow'])){
+                Log::debug('Conversation.start', [
+                    'context.flow' => [$context['flow']],
+                    'flowName' => $flowName
+                ]);
+                if ($flowName == $context['flow']) {
+                    $flow = app($flowName);
+                }
             }
         }
+
+
 
         $flow->setUser($user);
         $flow->setMessage($message);
