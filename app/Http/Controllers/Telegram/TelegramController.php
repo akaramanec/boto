@@ -41,7 +41,7 @@ class TelegramController extends Controller
 
         if (isset($update['callback_query'])) {
             $message->text = $update->callbackQuery->data;
-            Log::debug('webhook.message', ['text' => $message->text,'data' => $update->callbackQuery->data]);
+            Log::debug('webhook.message', ['text' => $message,'data' => $update->callbackQuery->data]);
         }
 
         Log::debug('webhook', ['user' => $user,'message' => $message]);
