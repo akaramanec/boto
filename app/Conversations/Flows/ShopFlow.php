@@ -2,6 +2,8 @@
 
 namespace App\Conversations\Flows;
 
+use App\Models\BotMessage;
+
 class ShopFlow extends AbstractFlow
 {
     protected $triggers = [
@@ -12,7 +14,7 @@ class ShopFlow extends AbstractFlow
     {
         $this->telegram()->sendMessage([
             'chat_id' => $this->user->id,
-            'text' => __('List of products of our shop')
+            'text' => BotMessage::where('briefly', 'shop_intro')->first()
         ]);
 
         $this->jump(ProductFlow::class);

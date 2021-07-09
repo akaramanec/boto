@@ -4,6 +4,8 @@
 namespace App\Conversations\Flows;
 
 
+use App\Models\BotMessage;
+
 class WelcomeFlow extends AbstractFlow
 {
     protected $triggers = [
@@ -14,7 +16,7 @@ class WelcomeFlow extends AbstractFlow
     {
         $this->telegram()->sendMessage([
             'chat_id' => $this->user->id,
-            'text' => __('Welcome to Boto shop')
+            'text' => BotMessage::where('briefly', 'welcome')->first()
         ]);
 
         $this->jump(ShopFlow::class);
