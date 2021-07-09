@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BotSetting;
+use App\Services\ProductService;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
@@ -50,6 +51,7 @@ class BotSettingController extends Controller
 
     public function test()
     {
-        return 'test';
+        $productService = app(ProductService::class);
+        print_r($productService->getProductButtons($productService->random()));
     }
 }

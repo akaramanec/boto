@@ -3,24 +3,53 @@
 namespace App\Conversations\Flows;
 
 use App\Models\Product;
+use App\Repositories\ProductRepository;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\Log;
+use Telegram\Bot\Keyboard\Keyboard;
 
 class ProductFlow extends AbstractFlow
 {
-    protected $triggers = [];
+    protected $triggers = [
+        'buy', 'prev', 'next'
+    ];
+
+    protected $options = [
+        'product_id' => null
+    ];
+
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
 
     protected function first()
     {
-        $products = Product::all();
+        if (!is_null($this->options['product_id'])) {
+            /** @var $product Product */
+            $product = $this->productService->getBuId($this->options['product_id']);
+        } else {
+            /** @var $product Product */
+            $product = $this->productService->random();
+        }
 
-        Log::debug('products', [
-            'all' => $products->toArray(),
+        Log::debug('ProductFlow.first', [
+            'product' => $product,
         ]);
 
-        $this->telegram()->sendMessage([
+        $buttons =  $this->productService->getProductButtons($product);
+
+        $this->telegram()->sendPhoto([
             'chat_id' => $this->user->id,
-            'text' => __('List of products of our shop')
+            'photo' => $product->image,
+            'caption' => $product->name . " >> " . $product->description,
+            'reply_markup' => Keyboard::make([
+                'inline_keyboard' => $buttons
+            ])
         ]);
     }
+
+
 }

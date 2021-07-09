@@ -7,14 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\TelegramUser;
 use App\Repositories\TelegramUserRepository;
-use App\Services\TelegramCallbackService;
+use App\Services\TelegramKeybordService;
 use Illuminate\Support\Facades\Log;
 use Telegram;
 
 class TelegramController extends Controller
 {
     /**
-     * @var TelegramCallbackService
+     * @var TelegramKeybordService
      */
     protected $conversation;
     /**
@@ -39,20 +39,5 @@ class TelegramController extends Controller
         $user = $this->users->store($user->toArray());
 
         $this->conversation->start($user, $message);
-    }
-
-    public function show()
-    {
-        return Product::inRandomOrder()->first();
-    }
-
-    public function next(Product $product)
-    {
-        return Product::where('id', '>', $product->id)->first() ?? $product;
-    }
-
-    public function prev(Product $product)
-    {
-        return Product::where('id', '<', $product->id)->first() ?? $product;
     }
 }

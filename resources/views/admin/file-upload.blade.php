@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form action="{{ route('file_import') }}" method="post" enctype="multipart/form-data">
-                <h3 class="mb-5">Upload File in shop store</h3>
+                <h3 class="mb-5">Upload Products to shop store</h3>
                 @csrf
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
