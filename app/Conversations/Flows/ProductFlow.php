@@ -54,20 +54,32 @@ class ProductFlow extends AbstractFlow
 
     protected function prev()
     {
-        $product = $this->getProduct();
+        $currentProduct = $this->getProduct();
+
+        /** @var $prevProduct Product */
+        $prevProduct  = $this->productService->prev($currentProduct);
 
         Log::debug('ProductFlow.prev', [
-            'product' => $product,
+            'product' => $currentProduct,
         ]);
+        Context::update($this->user, ['product_id' => $prevProduct->id]);
+
+        $this->sendProductWithKeyboard($prevProduct);
     }
 
     protected function next()
     {
         $product = $this->getProduct();
 
+        /** @var $nextProduct Product */
+        $nextProduct  = $this->productService->next($currentProduct);
+
         Log::debug('ProductFlow.next', [
             'product' => $product,
         ]);
+        Context::update($this->user, ['product_id' => $nextProduct->id]);
+
+        $this->sendProductWithKeyboard($nextProduct);
     }
 
     protected function getProduct(): Product
