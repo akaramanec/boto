@@ -40,8 +40,6 @@ class Conversation
             }
         }
 
-
-
         $flow->setUser($user);
         $flow->setMessage($message);
         $flow->setContext($context);
