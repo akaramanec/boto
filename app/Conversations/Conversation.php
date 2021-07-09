@@ -61,7 +61,7 @@ class Conversation
         $flow->setUser($user);
         $flow->setMessage($message);
         $flow->setContext($context);
-        $flow->setOptions($context['options']);
+        $flow->setOptions($context['options'] ?? []);
         $flow->run($context['state']);
     }
 }
