@@ -131,7 +131,7 @@ abstract class AbstractFlow
             $flow = $this->getFlow($this->context['flow']);
             $nextState = $this->getNextState($flow);
         }
-
+        Log::debug(static::class . '.findByContext', ['nextState' => $nextState]);
         return $nextState;
     }
 
