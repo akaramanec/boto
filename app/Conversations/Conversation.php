@@ -26,6 +26,10 @@ class Conversation
         ]);
 
         $context = Context::get($user);
+        if (isset($context)) {
+            Log::debug('Conversation.context', [$context]);
+        }
+
         $flow = app(WelcomeFlow::class);
 
         foreach ($this->flows as $flowName) {
