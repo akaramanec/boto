@@ -147,4 +147,6 @@ abstract class AbstractFlow
     }
 
     abstract protected function first();
+
+    abstract protected function processingCallback();
 }

@@ -9,6 +9,7 @@ use App\Conversations\Flows\WelcomeFlow;
 use App\Models\Product;
 use App\Models\TelegramUser;
 use Illuminate\Support\Facades\Log;
+use Telegram\Bot\Objects\CallbackQuery;
 
 class Conversation
 {
@@ -37,5 +38,10 @@ class Conversation
         $flow->setMessage($message);
         $flow->setContext($context);
         $flow->run($context['state'] ?? null);
+    }
+
+    public function processingCallback(CallbackQuery $callbackQuery)
+    {
+
     }
 }
