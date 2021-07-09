@@ -18,10 +18,10 @@ class ProductService extends ProductRepository
     {
         $row = 0;
         if($product->availability) {
-            $this->buttons[$row][] = ['text' => self::BUTTON_BUY];
+            $this->buttons[$row][] = [self::BUTTON_BUY];
         }
-        $this->buttons[$row][] = ['text' => self::BUTTON_PREV];
-        $this->buttons[$row][] = ['text' => self::BUTTON_NEXT];
+        $this->buttons[$row][] = [self::BUTTON_PREV];
+        $this->buttons[$row][] = [self::BUTTON_NEXT];
         return $this->buttons;
     }
 }
