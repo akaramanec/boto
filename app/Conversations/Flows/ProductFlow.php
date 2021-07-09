@@ -23,6 +23,10 @@ class ProductFlow extends AbstractFlow
         'product_id' => null
     ];
 
+    protected $states = [
+        'first', 'continue'
+    ];
+
     protected $productService;
 
     public function __construct(ProductService $productService)
@@ -40,16 +44,21 @@ class ProductFlow extends AbstractFlow
 
         Context::update($this->user, ['product_id' => $product->id]);
 
-        $buttons =  $this->productService->getProductButtons($product);
+        $this->sendProductWithKeyboard($product);
+    }
 
-        $this->telegram()->sendPhoto([
-            'chat_id' => $this->user->id,
-            'photo' => InputFile::create($product->image),
-            'caption' => $product->name . " >> " . $product->description,
-            'reply_markup' => Keyboard::make([
-                'inline_keyboard' => $buttons
-            ])
+    public function continue()
+    {
+        $context = Context::get($this->user);
+        $product = $this->getProduct();
+
+        Log::debug('ProductFlow.continue', [
+            'product' => $product,
         ]);
+
+        Context::update($this->user, ['product_id' => $product->id]);
+
+        $this->sendProductWithKeyboard($product);
     }
 
     protected function buy()
@@ -89,6 +98,20 @@ class ProductFlow extends AbstractFlow
             $product = $this->productService->random();
         }
         return $product;
+    }
+
+    protected function sendProductWithKeyboard(Product $product): void
+    {
+        $buttons = $this->productService->getProductButtons($product);
+
+        $this->telegram()->sendPhoto([
+            'chat_id' => $this->user->id,
+            'photo' => InputFile::create($product->image),
+            'caption' => $product->name . " >> " . $product->description,
+            'reply_markup' => Keyboard::make([
+                'inline_keyboard' => $buttons
+            ])
+        ]);
     }
 
 }
