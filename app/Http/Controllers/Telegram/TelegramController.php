@@ -37,7 +37,6 @@ class TelegramController extends Controller
         $message = $update->getMessage();
 
         if (isset($update['callback_query'])) {
-            Telegram::bot()->editMessageReplyMarkup(['reply_markup' => ['inline_keyboard' => []]]);
             $message->text = $update->callbackQuery->data;
             $user = $this->users->getBuId($update->getChat()->id);
             Log::debug('webhook.callback_query', ['user' => $user]);
