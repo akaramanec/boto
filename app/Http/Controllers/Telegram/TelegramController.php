@@ -41,7 +41,7 @@ class TelegramController extends Controller
             $user = $this->users->getBuId($update->getChat()->id);
             Log::debug('webhook.callback_query', ['user' => $user]);
         } else {
-            $user = $update->getFrom();
+            $user = $message->getFrom();
             Log::debug('webhook.getFrom', ['user' => $user]);
             $user = $this->users->store($user->toArray());
         }
