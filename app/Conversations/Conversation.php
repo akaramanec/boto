@@ -29,7 +29,6 @@ class Conversation
             Log::debug('Conversation.start.context', [$context]);
         }
         $flow = $this->getCurrentFlow($context);
-        $context['state'] = null;
         $this->run($flow, $user, $message, $context);
     }
 
@@ -42,6 +41,9 @@ class Conversation
         $context = Context::get($user);
         Log::debug('Conversation.continue.context', [$context]);
         $flow = $this->getCurrentFlow($context);
+
+        // if user is bot need check by trigger or context
+        $context['state'] = null;
         $this->run($flow, $user, $message, $context);
     }
 
