@@ -34,7 +34,7 @@ class TelegramController extends Controller
     public function webhook()
     {
         $update = Telegram::bot()->getWebhookUpdate();
-        if (!(array)$update->callbackQuery) {
+        if (isset($update['callback_query'])) {
             Log::debug('empty', [$update->callbackQuery]);
         }
 
