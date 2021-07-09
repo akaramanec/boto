@@ -37,6 +37,7 @@ class ProductsImport implements ToModel, WithStartRow, WithUpserts
     {
         $tempArray = [];
         foreach ($importArray[0] as $key => $product) {
+            $tempArray[$key]['id'] = $product[0];
             $tempArray[$key]['name'] = $product[1];
             $tempArray[$key]['quantity'] = $product[2];
             $tempArray[$key]['description'] = $product[3];
