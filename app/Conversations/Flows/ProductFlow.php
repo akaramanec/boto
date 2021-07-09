@@ -12,7 +12,10 @@ use Telegram\Bot\Keyboard\Keyboard;
 class ProductFlow extends AbstractFlow
 {
     protected $triggers = [
-        'buy', 'prev', 'next'
+        'first' => '/start',
+        'buy' => 'buy',
+        'prev' => 'prev',
+        'next' => 'next'
     ];
 
     protected $options = [

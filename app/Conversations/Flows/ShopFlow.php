@@ -4,6 +4,9 @@ namespace App\Conversations\Flows;
 
 class ShopFlow extends AbstractFlow
 {
+    protected $triggers = [
+        'first' => '/start',
+    ];
 
     protected function first()
     {

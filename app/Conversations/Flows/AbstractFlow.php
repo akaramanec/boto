@@ -105,15 +105,13 @@ abstract class AbstractFlow
     private function findByTrigger(): ?string
     {
         $state = null;
-        foreach ($this->triggers as $trigger) {
-            try {
-                if (hash_equals($trigger, $this->message->text)) {
-                    $state = 'first';
-                }
-            } catch (\Exception $exception) {
-                Log::debug('hash_equals', [$trigger, $this->message]);
+        foreach ($this->triggers as $key => $trigger) {
+            if (hash_equals($trigger, $this->message->text)) {
+                $state = $key;
             }
         }
+
+
         return $state;
     }
 

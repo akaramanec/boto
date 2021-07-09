@@ -7,7 +7,7 @@ namespace App\Conversations\Flows;
 class WelcomeFlow extends AbstractFlow
 {
     protected $triggers = [
-        '/start'
+        'first' => '/start'
     ];
 
     protected function first()
