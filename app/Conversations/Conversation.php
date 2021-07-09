@@ -41,7 +41,7 @@ class Conversation
             Log::debug('Conversation.start.context', [$context]);
         } else {
             //for first start for new user need
-            $context['state'] = null;
+            $context['state'] = 'first';
         }
         $flow = $this->getCurrentFlow($context);
 
