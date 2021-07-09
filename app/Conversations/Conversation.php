@@ -23,12 +23,8 @@ class Conversation
      */
     protected $users;
 
-    public function __construct(
-        TelegramUserRepository $userRepository,
-        Conversation $conversation
-    )
+    public function __construct(TelegramUserRepository $userRepository)
     {
-        $this->conversation = $conversation;
         $this->users = $userRepository;
     }
 
