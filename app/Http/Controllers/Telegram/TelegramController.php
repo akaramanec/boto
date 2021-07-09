@@ -42,7 +42,7 @@ class TelegramController extends Controller
         $user = $message->getFrom();
         $user = $this->users->store($user->toArray());
 
-        Log::debug('webhook', [$user, $message]);
+        Log::debug('webhook', ['user' => $user,'message' => $message]);
         $this->conversation->start($user, $message);
     }
 }
