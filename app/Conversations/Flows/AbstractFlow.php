@@ -15,11 +15,10 @@ abstract class AbstractFlow
     protected $user;
     /** @var object */
     protected $message;
-    /** @var array */
+
     protected $context = [];
-    /** @var array */
+    protected $options = [];
     protected $triggers = [];
-    /** @var array */
     protected $states = ['first'];
 
     public function telegram(): Api
@@ -33,10 +32,12 @@ abstract class AbstractFlow
             throw new InvalidArgumentException('Flow does not exists.');
         }
 
+        /** @var AbstractFlow $flow */
         $flow = app($flow);
         $flow->setUser($this->user);
         $flow->setMessage($this->message);
         $flow->setContext($this->context);
+        $flow->setOptions($this->options);
 
         return $flow;
     }
@@ -54,6 +55,11 @@ abstract class AbstractFlow
     public function setContext(array $context)
     {
         $this->context = $context;
+    }
+
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
     }
 
     public function getStates(): array
