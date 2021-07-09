@@ -106,8 +106,12 @@ abstract class AbstractFlow
     {
         $state = null;
         foreach ($this->triggers as $trigger) {
-            if (hash_equals($trigger, $this->message->text)) {
-                $state = 'first';
+            try {
+                if (hash_equals($trigger, $this->message->text)) {
+                    $state = 'first';
+                }
+            } catch (\Exception $exception) {
+                Log::debug($exception->getMessage(), $exception->getTrace());
             }
         }
         return $state;

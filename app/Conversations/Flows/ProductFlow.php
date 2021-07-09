@@ -28,13 +28,7 @@ class ProductFlow extends AbstractFlow
 
     protected function first()
     {
-        if (!is_null($this->options['product_id'])) {
-            /** @var $product Product */
-            $product = $this->productService->getBuId($this->options['product_id']);
-        } else {
-            /** @var $product Product */
-            $product = $this->productService->random();
-        }
+        $product = $this->getProduct();
 
         Log::debug('ProductFlow.first', [
             'product' => $product,
@@ -52,5 +46,43 @@ class ProductFlow extends AbstractFlow
         ]);
     }
 
+    protected function buy()
+    {
+        $product = $this->getProduct();
+
+        Log::debug('ProductFlow.buy', [
+            'product' => $product,
+        ]);
+    }
+
+    protected function prev()
+    {
+        $product = $this->getProduct();
+
+        Log::debug('ProductFlow.prev', [
+            'product' => $product,
+        ]);
+    }
+
+    protected function next()
+    {
+        $product = $this->getProduct();
+
+        Log::debug('ProductFlow.next', [
+            'product' => $product,
+        ]);
+    }
+
+    protected function getProduct(): Product
+    {
+        if (!is_null($this->options['product_id'])) {
+            /** @var $product Product */
+            $product = $this->productService->getBuId($this->options['product_id']);
+        } else {
+            /** @var $product Product */
+            $product = $this->productService->random();
+        }
+        return $product;
+    }
 
 }
