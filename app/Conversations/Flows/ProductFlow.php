@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\Log;
+use Telegram\Bot\FileUpload\InputFile;
 use Telegram\Bot\Keyboard\Keyboard;
 
 class ProductFlow extends AbstractFlow
@@ -43,7 +44,7 @@ class ProductFlow extends AbstractFlow
 
         $this->telegram()->sendPhoto([
             'chat_id' => $this->user->id,
-            'photo' => $product->image,
+            'photo' => InputFile::create($product->image),
             'caption' => $product->name . " >> " . $product->description,
             'reply_markup' => Keyboard::make([
                 'inline_keyboard' => $buttons
