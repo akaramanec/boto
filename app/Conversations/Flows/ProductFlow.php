@@ -90,7 +90,7 @@ class ProductFlow extends AbstractFlow
 
     protected function getProduct(): Product
     {
-        if (!is_null($this->options['product_id'])) {
+        if (isset($this->options['product_id']) && !is_null($this->options['product_id'])) {
             /** @var $product Product */
             $product = $this->productService->getBuId($this->options['product_id']);
         } else {
