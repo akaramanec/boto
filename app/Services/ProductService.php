@@ -36,7 +36,7 @@ class ProductService extends ProductRepository
     public function buy(TelegramUser $user, Product $product): Eloquent
     {
         return Order::create([
-            'user_id' => $user->id,
+            'telegram_user_id' => $user->id,
             'product_id' => $product->id,
             'count' => 1,
             'price' => $product->price,
