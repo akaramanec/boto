@@ -111,7 +111,7 @@ abstract class AbstractFlow
                     $state = 'first';
                 }
             } catch (\Exception $exception) {
-                Log::debug($exception->getMessage(), $exception->getTraceAsString());
+                Log::debug($exception->getMessage(), [$exception->getTraceAsString()]);
                 Log::debug('hash_equals', [$trigger, $this->message]);
             }
         }
