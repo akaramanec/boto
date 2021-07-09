@@ -98,10 +98,14 @@ class ProductFlow extends AbstractFlow
     {
         $buttons = $this->productService->getProductButtons($product);
 
+        $caption = 'Name: ' . $product->name . PHP_EOL;
+        $caption .= 'Description: ' . $product->description . PHP_EOL;
+        $caption .= 'Price: ' . $product->price . PHP_EOL;
+
         $this->telegram()->sendPhoto([
             'chat_id' => $this->user->id,
             'photo' => InputFile::create($product->image),
-            'caption' => $product->name . " >> " . $product->description,
+            'caption' => $caption,
             'reply_markup' => Keyboard::make([
                 'inline_keyboard' => $buttons
             ])

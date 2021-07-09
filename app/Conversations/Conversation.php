@@ -7,7 +7,10 @@ use App\Conversations\Flows\ProductFlow;
 use App\Conversations\Flows\ShopFlow;
 use App\Conversations\Flows\WelcomeFlow;
 use App\Models\TelegramUser;
+use App\Repositories\TelegramUserRepository;
 use Illuminate\Support\Facades\Log;
+use Telegram;
+use Telegram\Bot\Objects\Update;
 
 class Conversation
 {
@@ -15,14 +18,29 @@ class Conversation
         ShopFlow::class,
         ProductFlow::class
     ];
+    /**
+     * @var TelegramUserRepository
+     */
+    protected $users;
 
-    public function start(TelegramUser $user, object $message)
+    public function __construct(
+        TelegramUserRepository $userRepository,
+        Conversation $conversation
+    )
     {
-        Log::debug('Conversation.start', [
-            'user' => $user->toArray(),
-            'message' => $message->toArray()
-        ]);
+        $this->conversation = $conversation;
+        $this->users = $userRepository;
+    }
+
+    public function start(Update $update)
+    {
+        $message = $update->getMessage();
+        $user = $message->getFrom();
+
+        /** @var TelegramUser $user */
+        $user = $this->users->store($user->toArray());
         $context = Context::get($user);
+
         if (isset($context)) {
             Log::debug('Conversation.start.context', [$context]);
         }
@@ -30,13 +48,21 @@ class Conversation
         $this->run($flow, $user, $message, $context);
     }
 
-    public function continue(TelegramUser $user, object $message)
+    public function continue(Update $update)
     {
-        Log::debug('Conversation.continue', [
-            'user' => $user->toArray(),
-            'message' => $message->toArray()
-        ]);
+        $message = $update->getMessage();
+        $message->text = $update->callbackQuery->data;
+        $chatId = $update->getChat()->id;
+
+        /** @var TelegramUser $user */
+        $user = $this->users->getBuId($chatId);
         $context = Context::get($user);
+
+        Telegram::bot()->deleteMessage([
+            'chat_id' => $chatId,
+            'message_id' => $message->messageId
+        ]);
+
         Log::debug('Conversation.continue.context', [$context]);
         $flow = $this->getCurrentFlow($context);
 
