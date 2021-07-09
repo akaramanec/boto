@@ -41,6 +41,6 @@ class Conversation
         $flow->setUser($user);
         $flow->setMessage($message);
         $flow->setContext($context);
-        $flow->run($context['state'] ?? null);
+        $flow->run();
     }
 }
