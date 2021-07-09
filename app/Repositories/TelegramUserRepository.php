@@ -16,4 +16,9 @@ class TelegramUserRepository extends AbstractRepository
     {
         return $this->model->firstOrCreate(['id' => $user['id']], $user);
     }
+
+    public function getBuId(int $id): Eloquent
+    {
+        return $this->model::where('id', $id)->first();
+    }
 }
