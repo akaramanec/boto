@@ -18,6 +18,6 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo(TelegramUser::class, 'user_id', 'id');
+        return $this->belongsTo(TelegramUser::class);
     }
 }
