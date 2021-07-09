@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\TelegramUser;
 use App\Repositories\ProductRepository;
 use Eloquent;
 
@@ -29,5 +31,17 @@ class ProductService extends ProductRepository
         $this->buttons[$row][] = ['text' => $this->buttonTexts[self::BUTTON_PREV], 'callback_data' => self::BUTTON_PREV];
         $this->buttons[$row][] = ['text' => $this->buttonTexts[self::BUTTON_NEXT], 'callback_data' => self::BUTTON_NEXT];
         return $this->buttons;
+    }
+
+    public function buy(TelegramUser $user, Product $product): Eloquent
+    {
+        return Order::create([
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+            'count' => 1,
+            'price' => $product->price,
+            'sum' => $product->price,
+            'status' => 1
+        ]);
     }
 }

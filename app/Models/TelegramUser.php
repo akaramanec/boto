@@ -12,4 +12,9 @@ class TelegramUser extends Eloquent
     protected $guarded = [];
 
     protected $hidden = ['created_at', 'updated_at'];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

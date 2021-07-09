@@ -3,6 +3,7 @@
 namespace App\Conversations\Flows;
 
 use App\Conversations\Context;
+use App\Models\Order;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;
@@ -45,11 +46,26 @@ class ProductFlow extends AbstractFlow
 
     protected function buy()
     {
-        $product = $this->getProduct();
+        $currentProduct = $this->getProduct();
 
-        Log::debug('ProductFlow.buy', [
-            'product' => $product,
+        if (!isset($currentProduct) || $currentProduct->availability < 1) {
+            $this->telegram()->sendMessage([
+                'chat_id' => $this->user->id,
+                'text' => __("Something went wrong. Please contact the administrator.")
+            ]);
+        }
+
+        /** @var Order $order */
+        $order = $this->productService->buy($this->user, $currentProduct);
+        $this->telegram()->sendMessage([
+            'chat_id' => $this->user->id,
+            'text' => __("Your order number is {$order->id}. In the near future our manager will contact you to clarify the deal.")
         ]);
+
+        Log::debug('ProductFlow.prev', [
+            'product' => $currentProduct,
+        ]);
+        Context::update($this->user, ['product_id' => null]);
     }
 
     protected function prev()

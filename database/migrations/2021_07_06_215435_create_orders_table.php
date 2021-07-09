@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Product;
-use App\Models\User;
+use App\Models\TelegramUser;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,12 +17,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(TelegramUser::class)->nullable();
             $table->foreignIdFor(Product::class)->nullable();
             $table->integer('count')->nullable();
             $table->float('price')->nullable();
             $table->float('sum')->nullable();
-            $table->tinyInteger('status')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
