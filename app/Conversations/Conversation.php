@@ -37,7 +37,7 @@ class Conversation
         $user = $this->users->store($user->toArray());
         $context = Context::get($user);
 
-        if (isset($context) || $context == []) {
+        if (isset($context) && $context != []) {
             Log::debug('Conversation.start.context', [$context]);
         } else {
             //for first start for new user need
