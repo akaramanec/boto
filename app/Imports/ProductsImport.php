@@ -23,6 +23,7 @@ class ProductsImport implements ToModel, WithStartRow, WithUpserts
     public function model(array $row): Product
     {
         return new Product([
+            'id' => $row[0],
             'name' => $row[1],
             'quantity' => $row[2],
             'description' => $row[3],
