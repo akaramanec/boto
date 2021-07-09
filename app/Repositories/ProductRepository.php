@@ -29,6 +29,6 @@ class ProductRepository extends AbstractRepository
 
     public function prev(Product $product): Eloquent
     {
-        return $this->model::where('id', '<', $product->id)->first() ?? $product;
+        return $this->model::where('id', '<', $product->id)->orderBy('id', 'desc')->first() ?? $product;
     }
 }
