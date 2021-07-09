@@ -39,8 +39,12 @@ class Conversation
 
         if (isset($context)) {
             Log::debug('Conversation.start.context', [$context]);
+        } else {
+            //for first start for new user need
+            $context['state'] = null;
         }
         $flow = $this->getCurrentFlow($context);
+
         $this->run($flow, $user, $message, $context);
     }
 
