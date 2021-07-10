@@ -19,10 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Rout for test returns
+Route::get('test', [\App\Http\Controllers\Admin\TestController::class, 'test'])
+    ->middleware('auth')
+    ->name('test');
+
 Route::get('/', [ProductController::class, 'index'])->name('home');
 
-Route::get('/imports', [AdminProductController::class, 'imports'])->middleware(['auth', 'admin'])->name('imports');
-Route::post('/imports', [AdminProductController::class, 'fileImport'])->middleware(['auth', 'admin'])->name('file_import');
+Route::group(['middleware' => 'auth', 'prefix' => '/import'], function (){
+    Route::get('/', [AdminProductController::class, 'imports'])->name('imports');
+    Route::get('/google-sheet', [AdminProductController::class, 'googleSheetsImport'])->name('google_sheet_import');
+    Route::post('/file', [AdminProductController::class, 'fileImport'])->name('file_import');
+});
 
 Route::post(Telegram::getAccessToken(), [TelegramController::class, 'webhook']);
 

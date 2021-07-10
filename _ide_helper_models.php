@@ -57,15 +57,15 @@ namespace App\Models{
  * App\Models\Order
  *
  * @property int $id
- * @property int|null $user_id
+ * @property int|null $telegram_user_id
  * @property int|null $product_id
  * @property int|null $count
  * @property float|null $price
  * @property float|null $sum
- * @property int|null $status
+ * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User|null $user
+ * @property-read \App\Models\TelegramUser $user
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
@@ -76,8 +76,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereSum($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereTelegramUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
  */
 	class Order extends \Eloquent {}
 }
@@ -123,6 +123,8 @@ namespace App\Models{
  * @property string|null $language_code
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
+ * @property-read int|null $orders_count
  * @method static \Illuminate\Database\Eloquent\Builder|TelegramUser newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TelegramUser newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TelegramUser query()

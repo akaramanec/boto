@@ -16071,6 +16071,466 @@
      
 }
 
+    namespace PulkitJalan\Google\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Google {
+                    /**
+         * Getter for the google client.
+         *
+         * @return \Google_Client 
+         * @static 
+         */ 
+        public static function getClient()
+        {
+                        /** @var \PulkitJalan\Google\Client $instance */
+                        return $instance->getClient();
+        }
+                    /**
+         * Setter for the google client.
+         *
+         * @param string $client
+         * @return self 
+         * @static 
+         */ 
+        public static function setClient($client)
+        {
+                        /** @var \PulkitJalan\Google\Client $instance */
+                        return $instance->setClient($client);
+        }
+                    /**
+         * Getter for the google service.
+         *
+         * @param string $service
+         * @throws \Exception
+         * @return \Google_Service 
+         * @static 
+         */ 
+        public static function make($service)
+        {
+                        /** @var \PulkitJalan\Google\Client $instance */
+                        return $instance->make($service);
+        }
+         
+    }
+     
+}
+
+    namespace Revolution\Google\Sheets\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Sheets {
+                    /**
+         * 
+         *
+         * @param \Google\Service\Sheets|\Google\Service $service
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function setService($service)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->setService($service);
+        }
+                    /**
+         * 
+         *
+         * @return \Google\Service\Sheets 
+         * @static 
+         */ 
+        public static function getService()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->getService();
+        }
+                    /**
+         * set access_token and set new service.
+         *
+         * @param string|array $token
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function setAccessToken($token)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->setAccessToken($token);
+        }
+                    /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAccessToken()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->getAccessToken();
+        }
+                    /**
+         * 
+         *
+         * @param string $spreadsheetId
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function spreadsheet($spreadsheetId)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->spreadsheet($spreadsheetId);
+        }
+                    /**
+         * 
+         *
+         * @param string $title
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function spreadsheetByTitle($title)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->spreadsheetByTitle($title);
+        }
+                    /**
+         * 
+         *
+         * @param string $sheet
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function sheet($sheet)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->sheet($sheet);
+        }
+                    /**
+         * 
+         *
+         * @param string $sheetId
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function sheetById($sheetId)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->sheetById($sheetId);
+        }
+                    /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function sheetList()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->sheetList();
+        }
+                    /**
+         * 
+         *
+         * @param string $sheetTitle
+         * @return \Google_Service_Sheets_BatchUpdateSpreadsheetResponse 
+         * @static 
+         */ 
+        public static function addSheet($sheetTitle)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->addSheet($sheetTitle);
+        }
+                    /**
+         * 
+         *
+         * @param string $sheetTitle
+         * @return \Google_Service_Sheets_BatchUpdateSpreadsheetResponse 
+         * @static 
+         */ 
+        public static function deleteSheet($sheetTitle)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->deleteSheet($sheetTitle);
+        }
+                    /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function all()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->all();
+        }
+                    /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function first()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->first();
+        }
+                    /**
+         * 
+         *
+         * @param array $value
+         * @param string $valueInputOption
+         * @return mixed|\Google_Service_Sheets_UpdateValuesResponse 
+         * @static 
+         */ 
+        public static function update($value, $valueInputOption = 'RAW')
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->update($value, $valueInputOption);
+        }
+                    /**
+         * 
+         *
+         * @return mixed|\Revolution\Google\Sheets\ClearValuesResponse 
+         * @static 
+         */ 
+        public static function clear()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->clear();
+        }
+                    /**
+         * 
+         *
+         * @param array $values
+         * @param string $valueInputOption
+         * @param string $insertDataOption
+         * @return mixed|\Google_Service_Sheets_AppendValuesResponse 
+         * @static 
+         */ 
+        public static function append($values, $valueInputOption = 'RAW', $insertDataOption = 'OVERWRITE')
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->append($values, $valueInputOption, $insertDataOption);
+        }
+                    /**
+         * 
+         *
+         * @param array $values
+         * @return array 
+         * @static 
+         */ 
+        public static function orderAppendables($values)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->orderAppendables($values);
+        }
+                    /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function ranges()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->ranges();
+        }
+                    /**
+         * 
+         *
+         * @param string $range
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function range($range)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->range($range);
+        }
+                    /**
+         * 
+         *
+         * @param string $majorDimension
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function majorDimension($majorDimension)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->majorDimension($majorDimension);
+        }
+                    /**
+         * 
+         *
+         * @param string $valueRenderOption
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function valueRenderOption($valueRenderOption)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->valueRenderOption($valueRenderOption);
+        }
+                    /**
+         * 
+         *
+         * @param string $dateTimeRenderOption
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function dateTimeRenderOption($dateTimeRenderOption)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->dateTimeRenderOption($dateTimeRenderOption);
+        }
+                    /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function spreadsheetList()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->spreadsheetList();
+        }
+                    /**
+         * 
+         *
+         * @param \Revolution\Google\Sheets\Drive|\Google\Service $drive
+         * @return \Revolution\Google\Sheets\Sheets 
+         * @static 
+         */ 
+        public static function setDriveService($drive)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->setDriveService($drive);
+        }
+                    /**
+         * 
+         *
+         * @return \Revolution\Google\Sheets\Drive|\Google\Service 
+         * @static 
+         */ 
+        public static function getDriveService()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->getDriveService();
+        }
+                    /**
+         * 
+         *
+         * @return \stdClass 
+         * @static 
+         */ 
+        public static function spreadsheetProperties()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->spreadsheetProperties();
+        }
+                    /**
+         * 
+         *
+         * @return \stdClass 
+         * @static 
+         */ 
+        public static function sheetProperties()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->sheetProperties();
+        }
+                    /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getSpreadsheetId()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->getSpreadsheetId();
+        }
+                    /**
+         * 
+         *
+         * @return \Revolution\Google\Sheets\Collection 
+         * @static 
+         */ 
+        public static function get()
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->get();
+        }
+                    /**
+         * 
+         *
+         * @param array $header
+         * @param array|\Revolution\Google\Sheets\Collection $rows
+         * @return \Revolution\Google\Sheets\Collection 
+         * @static 
+         */ 
+        public static function collection($header, $rows)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->collection($header, $rows);
+        }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+                        \Revolution\Google\Sheets\Sheets::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {
+                        \Revolution\Google\Sheets\Sheets::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+                        return \Revolution\Google\Sheets\Sheets::hasMacro($name);
+        }
+                    /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */ 
+        public static function macroCall($method, $parameters)
+        {
+                        /** @var \Revolution\Google\Sheets\Sheets $instance */
+                        return $instance->macroCall($method, $parameters);
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\Http { 
             /**
      * 
@@ -19386,6 +19846,8 @@ namespace  {
             class Excel extends \Maatwebsite\Excel\Facades\Excel {}
             class Telegram extends \Telegram\Bot\Laravel\Facades\Telegram {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
+            class Google extends \PulkitJalan\Google\Facades\Google {}
+            class Sheets extends \Revolution\Google\Sheets\Facades\Sheets {}
      
 }
 

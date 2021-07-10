@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BotSetting;
-use App\Services\ProductService;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Telegram\Bot\Laravel\Facades\Telegram;
@@ -47,11 +46,5 @@ class BotSettingController extends Controller
         $client = new Client(['base_uri' => 'https://api.telegram.org/bot' . Telegram::getAccessToken() . '/']);
         $result = $client->request($method, $uri, $params);
         return (string)$result->getBody();
-    }
-
-    public function test()
-    {
-        $productService = app(ProductService::class);
-        print_r($productService->getProductButtons($productService->random()));
     }
 }
