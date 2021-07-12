@@ -6,8 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "ext-http": "*",
-        "ext-json": "*",
         "barryvdh/laravel-ide-helper": "^2.10",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
