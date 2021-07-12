@@ -15631,6 +15631,18 @@
                     /**
          * 
          *
+         * @param string $classname
+         * @param callable|null $callback
+         * @static 
+         */ 
+        public static function assertExportedInRaw($classname, $callback = null)
+        {
+                        /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+                        return $instance->assertExportedInRaw($classname, $callback);
+        }
+                    /**
+         * 
+         *
          * @param string $filePath
          * @param string|callable|null $disk
          * @param callable|null $callback

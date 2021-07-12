@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0a8659d4f3ee2a1d5da022e779b373c",
+    "content-hash": "983add6687616e3d705212b1cbdc0eb5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1692,16 +1692,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.202.0",
+            "version": "v0.203.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "c72cb04fde47a2cc3336c1f513f9ff5db27ccc35"
+                "reference": "e397f35251a49e0f4284d5f7d934164ca1274066"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/c72cb04fde47a2cc3336c1f513f9ff5db27ccc35",
-                "reference": "c72cb04fde47a2cc3336c1f513f9ff5db27ccc35",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/e397f35251a49e0f4284d5f7d934164ca1274066",
+                "reference": "e397f35251a49e0f4284d5f7d934164ca1274066",
                 "shasum": ""
             },
             "require": {
@@ -1730,9 +1730,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.202.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.203.0"
             },
-            "time": "2021-07-03T11:20:23+00:00"
+            "time": "2021-07-10T11:20:23+00:00"
         },
         {
             "name": "google/auth",
@@ -2817,16 +2817,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.1.31",
+            "version": "3.1.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "cbe6370af70f93bd017f77ef92d32bd492a47fcb"
+                "reference": "9dc29b63a77fb7f2f514ef754af3a1b57e83cadf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/cbe6370af70f93bd017f77ef92d32bd492a47fcb",
-                "reference": "cbe6370af70f93bd017f77ef92d32bd492a47fcb",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/9dc29b63a77fb7f2f514ef754af3a1b57e83cadf",
+                "reference": "9dc29b63a77fb7f2f514ef754af3a1b57e83cadf",
                 "shasum": ""
             },
             "require": {
@@ -2879,7 +2879,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Maatwebsite/Laravel-Excel/issues",
-                "source": "https://github.com/Maatwebsite/Laravel-Excel/tree/3.1.31"
+                "source": "https://github.com/Maatwebsite/Laravel-Excel/tree/3.1.32"
             },
             "funding": [
                 {
@@ -2891,7 +2891,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-02T17:31:29+00:00"
+            "time": "2021-07-08T10:11:21+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -10189,9 +10189,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0",
-        "ext-http": "*",
-        "ext-json": "*"
+        "php": "^7.3|^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
